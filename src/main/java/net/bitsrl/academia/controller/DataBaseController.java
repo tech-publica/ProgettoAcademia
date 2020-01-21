@@ -34,6 +34,7 @@ public class DataBaseController {
                 String lastNameLike = userInput.next();
                 Collection<Agent> agents1 = repAgent.getByLastnameLike(lastNameLike);
                 agents1.forEach(System.out::println);
+                System.out.println();
                 break;
             case 3: //Create
                 System.out.println("-CREATE-");
@@ -47,7 +48,17 @@ public class DataBaseController {
                 System.out.println();
                 break;
             case 4: //Update
-                System.out.println("-UPDATE-");
+                System.out.println("-UPDATE-\nLista Agents attuali");
+                Collection<Agent> agents2 = repAgent.getAll();
+                agents2.forEach(System.out::println);
+                System.out.print("ID dell'Agent da sostituire: ");
+                int id = userInput.nextInt();
+                System.out.print("Nuovo nome: ");
+                String newName = userInput.next();
+                System.out.print("Nuovo cognome: ");
+                String newLastName = userInput.next();
+                repAgent.update(id, new Agent(id, newName, newLastName));
+                System.out.println();
                 break;
             case 5: //Delete
                 System.out.println("-DELETE-");
@@ -64,9 +75,11 @@ public class DataBaseController {
 
     public void start() {
         System.out.println("Inserisci un numero per accedere al menu richiesto");
-        System.out.print("1.Agente\n2.Corso\nInserisci numero: ");
+        System.out.print("0.Esci\n1.Agente\n2.Corso\nInserisci numero: ");
         int num = userInput.nextInt();
         switch (num) {
+            case 0: //Esci
+                System.exit(0);
             case 1: //Agent
                 controlAgent();
                 break;
