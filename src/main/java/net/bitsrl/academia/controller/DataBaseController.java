@@ -4,11 +4,15 @@ import java.util.Collection;
 import java.util.Scanner;
 
 import net.bitsrl.academia.database.InMemoryRepositoryAgent;
+import net.bitsrl.academia.database.InMemoryRepositoryCourse;
 import net.bitsrl.academia.database.RepositoryAgent;
+import net.bitsrl.academia.database.RepositoryCourse;
 import net.bitsrl.academia.model.Agent;
+import net.bitsrl.academia.model.Course;
 
 public class DataBaseController {
     private RepositoryAgent repAgent = new InMemoryRepositoryAgent();
+    private RepositoryCourse repCourse = new InMemoryRepositoryCourse();
     Scanner userInput = new Scanner(System.in);
 
     private void controlAgent() {
@@ -77,6 +81,68 @@ public class DataBaseController {
     }
 
     private void controlCourse() {
+        System.out.print("--COURSE MENU--\n0.Go Back\n1.Read Alls\n2.Read by Tile\n3.Create\n4.Update\n5.Delete" +
+                "\nScegli Numero: ");
+        int num = userInput.nextInt();
+        switch (num) {
+            case 0: //Go Back
+                start();
+                break;
+            case 1: // Read Alls
+                System.out.println("-READ ALLS-");
+                Collection<Course> courses = repCourse.getAll();
+//                for(Course a : courses){
+//                    System.out.println(a);
+//                }
+//                courses.forEach(a -> System.out.println(a));
+                courses.forEach(System.out::println);
+                System.out.println();
+                break;
+            case 2: //Read by Title
+                System.out.println("-READ BY TITLE-");
+                System.out.print("Inserisci il titolo o parte di esso: ");
+                String titleLike = userInput.next();
+                Collection<Course> course1 = repCourse.getByTitleLike(titleLike);
+                course1.forEach(System.out::println);
+                System.out.println();
+                break;
+            case 3: //Create
+                System.out.println("-CREATE-");
+                System.out.print("ID: ");
+                int inputid = userInput.nextInt();
+                System.out.print("Title: ");
+                String inputLastName = userInput.next();
+                System.out.print("Durata in ore: ");
+                int inputHour = userInput.nextInt();
+                repCourse.create(new Course(inputid, inputLastName, inputHour));
+                System.out.println();
+                break;
+            case 4: //Update
+                System.out.println("-UPDATE-\nLista Agents attuali");
+                Collection<Course> course2 = repCourse.getAll();
+                course2.forEach(System.out::println);
+                System.out.print("ID dell'Course da sostituire: ");
+                int id = userInput.nextInt();
+                System.out.print("Nuovo titolo: ");
+                String newTitle = userInput.next();
+                System.out.print("Nuova durata: ");
+                int newHour = userInput.nextInt();
+                repCourse.update(id, new Course(id, newTitle, newHour));
+                System.out.println();
+                break;
+            case 5: //Delete
+                System.out.println("-DELETE-");
+                Collection<Course> course3 = repCourse.getAll();
+                course3.forEach(System.out::println);
+                System.out.print("Inserisci l'id del corso da eliminare: ");
+                int courseIdToDelete = userInput.nextInt();
+                repCourse.delete(courseIdToDelete);
+                break;
+            default: //Default
+                System.out.println("-Il menu arriva fino a 5-");
+                break;
+        }
+        start();
     }
 
     public void start() {
