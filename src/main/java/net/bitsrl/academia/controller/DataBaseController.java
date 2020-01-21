@@ -20,6 +20,7 @@ public class DataBaseController {
                 break;
             case 1:
                 System.out.println("-READ ALLS-");
+                System.out.println(repAgent.getAll());
                 break;
             case 2:
                 System.out.println("-READ BY LASTNAME-");
@@ -36,6 +37,7 @@ public class DataBaseController {
                 break;
             case 4:
                 System.out.println("-UPDATE-");
+
                 break;
             case 5:
                 System.out.println("-DELETE-");
