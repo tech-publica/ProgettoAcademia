@@ -34,4 +34,13 @@ public class Agent {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
 }

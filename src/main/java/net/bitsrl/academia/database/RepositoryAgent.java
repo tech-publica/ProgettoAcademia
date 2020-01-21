@@ -10,4 +10,5 @@ public interface RepositoryAgent {
     Collection<Agent> getAll();
     Collection<Agent> getByLastnameLike(String pattern);
     //aggiungere metodi
+
 }

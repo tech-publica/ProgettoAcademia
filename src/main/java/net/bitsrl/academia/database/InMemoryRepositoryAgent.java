@@ -43,6 +43,4 @@ public class InMemoryRepositoryAgent implements RepositoryAgent {
                 .filter(a -> a.getLastname().contains(pattern))
                 .collect(Collectors.toList());
     }
-
-
 }
