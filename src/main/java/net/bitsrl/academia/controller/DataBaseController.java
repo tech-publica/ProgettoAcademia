@@ -2,6 +2,7 @@ package net.bitsrl.academia.controller;
 
 import java.util.Collection;
 import java.util.Scanner;
+
 import net.bitsrl.academia.database.InMemoryRepositoryAgent;
 import net.bitsrl.academia.database.RepositoryAgent;
 import net.bitsrl.academia.model.Agent;
@@ -62,9 +63,14 @@ public class DataBaseController {
                 break;
             case 5: //Delete
                 System.out.println("-DELETE-");
+                Collection<Agent> agents3 = repAgent.getAll();
+                agents3.forEach(System.out::println);
+                System.out.print("Inserisci l'id dell'agente da eliminare: ");
+                int agentIdToDelete = userInput.nextInt();
+                repAgent.delete(agentIdToDelete);
                 break;
             default: //Default
-                System.out.println("-DEFAULT-");
+                System.out.println("-Il menu arriva fino a 5-");
                 break;
         }
         start();
@@ -87,9 +93,10 @@ public class DataBaseController {
                 controlCourse();
                 break;
             default:
-                System.out.println("DEFINIRE");
+                System.out.println("-Il menu arriva fino a 2-\n");
                 break;
         }
+        userInput.close();
         start();
     }
 }
