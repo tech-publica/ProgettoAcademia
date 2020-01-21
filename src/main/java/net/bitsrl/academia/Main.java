@@ -6,5 +6,6 @@ public class Main {
     public static void main(String[] args) {
         DataBaseController mydbc = new DataBaseController();
         mydbc.start();
+        mydbc.close();
     }
 }

@@ -15,7 +15,7 @@ public class DataBaseInMemory {
         return instance;
     }
 
-    private DataBaseInMemory(){
+    public DataBaseInMemory(){
         Agent a1 = new Agent(1,"Mario","Rossi");
         Agent a2 = new Agent(2,"Laura","Bianchi");
         Agent a3 = new Agent(3,"Sabrina","Verdi");

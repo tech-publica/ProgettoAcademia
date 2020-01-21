@@ -2,6 +2,7 @@ package net.bitsrl.academia.database;
 
 import net.bitsrl.academia.model.Agent;
 
+import javax.xml.crypto.Data;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,10 +10,16 @@ import java.util.stream.Collectors;
 public class InMemoryRepositoryAgent implements RepositoryAgent {
     private DataBaseInMemory data = DataBaseInMemory.getInstance();
 
-
     @Override
     public Agent create(Agent toInsert) {
         Map<Integer, Agent> agents = data.getAgent();
+        int maxKey = agents.keySet()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .orElse(0);
+        maxKey++;
+        toInsert.setId(maxKey);
         agents.put(toInsert.getId(), toInsert);
         return toInsert;
     }

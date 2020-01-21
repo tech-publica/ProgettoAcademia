@@ -10,10 +10,10 @@ import net.bitsrl.academia.database.RepositoryCourse;
 import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 
-public class DataBaseController {
+public class DataBaseController implements AutoCloseable {
     private RepositoryAgent repAgent = new InMemoryRepositoryAgent();
     private RepositoryCourse repCourse = new InMemoryRepositoryCourse();
-    Scanner userInput = new Scanner(System.in);
+    private Scanner userInput = new Scanner(System.in);
 
     private void controlAgent() {
         System.out.print("--AGENT MENU--\n0.Go Back\n1.Read Alls\n2.Read by LastName\n3.Create\n4.Update\n5.Delete" +
@@ -21,7 +21,7 @@ public class DataBaseController {
         int num = userInput.nextInt();
         switch (num) {
             case 0: //Go Back
-                start();
+
                 break;
             case 1: // Read Alls
                 System.out.println("-READ ALLS-");
@@ -43,13 +43,13 @@ public class DataBaseController {
                 break;
             case 3: //Create
                 System.out.println("-CREATE-");
-                System.out.print("ID: ");
-                int inputid = userInput.nextInt();
+//                System.out.print("ID: ");
+//                int inputid = userInput.nextInt();
                 System.out.print("Name: ");
                 String inputName = userInput.next();
                 System.out.print("LastName: ");
                 String inputLastName = userInput.next();
-                repAgent.create(new Agent(inputid, inputName, inputLastName));
+                repAgent.create(new Agent(0, inputName, inputLastName));
                 System.out.println();
                 break;
             case 4: //Update
@@ -77,7 +77,7 @@ public class DataBaseController {
                 System.out.println("-Il menu arriva fino a 5-");
                 break;
         }
-        start();
+
     }
 
     private void controlCourse() {
@@ -86,7 +86,6 @@ public class DataBaseController {
         int num = userInput.nextInt();
         switch (num) {
             case 0: //Go Back
-                start();
                 break;
             case 1: // Read Alls
                 System.out.println("-READ ALLS-");
@@ -142,7 +141,7 @@ public class DataBaseController {
                 System.out.println("-Il menu arriva fino a 5-");
                 break;
         }
-        start();
+
     }
 
     public void start() {
@@ -151,7 +150,8 @@ public class DataBaseController {
         int num = userInput.nextInt();
         switch (num) {
             case 0: //Esci
-                System.exit(0);
+//                System.exit(0);
+                return;
             case 1: //Agent
                 controlAgent();
                 break;
@@ -162,7 +162,12 @@ public class DataBaseController {
                 System.out.println("-Il menu arriva fino a 2-\n");
                 break;
         }
-        userInput.close();
         start();
+
+    }
+
+    @Override
+    public void close() {
+        userInput.close();
     }
 }
