@@ -1,7 +1,6 @@
 package net.bitsrl.academia.database;
 
-import net.bitsrl.academia.agent.Agent;
-
+import net.bitsrl.academia.model.Agent;
 import java.util.Collection;
 
 public interface RepositoryAgent {

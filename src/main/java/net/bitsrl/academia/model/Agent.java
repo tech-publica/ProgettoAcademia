@@ -1,4 +1,4 @@
-package net.bitsrl.academia.agent;
+package net.bitsrl.academia.model;
 
 public class Agent {
     private int id;

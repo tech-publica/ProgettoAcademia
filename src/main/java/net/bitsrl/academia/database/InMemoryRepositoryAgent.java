@@ -1,14 +1,14 @@
 package net.bitsrl.academia.database;
 
-import net.bitsrl.academia.agent.Agent;
+import net.bitsrl.academia.model.Agent;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InMemoryRepositoryAgent implements RepositoryAgent {
     private DataBaseInMemory data = DataBaseInMemory.getInstance();
+
 
     @Override
     public Agent create(Agent toInsert) {
@@ -43,4 +43,6 @@ public class InMemoryRepositoryAgent implements RepositoryAgent {
                 .filter(a -> a.getLastname().contains(pattern))
                 .collect(Collectors.toList());
     }
+
+
 }

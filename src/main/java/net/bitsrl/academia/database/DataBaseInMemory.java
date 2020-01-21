@@ -1,8 +1,7 @@
 package net.bitsrl.academia.database;
 
-import net.bitsrl.academia.agent.Agent;
-import net.bitsrl.academia.course.Course;
-
+import net.bitsrl.academia.model.Agent;
+import net.bitsrl.academia.model.Course;
 import java.util.HashMap;
 import java.util.Map;
 
