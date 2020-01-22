@@ -1,17 +1,15 @@
 package net.bitsrl.academia.controller;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Scanner;
 
-import net.bitsrl.academia.database.InMemoryRepositoryAgent;
-import net.bitsrl.academia.database.InMemoryRepositoryCourse;
-import net.bitsrl.academia.database.RepositoryAgent;
-import net.bitsrl.academia.database.RepositoryCourse;
+import net.bitsrl.academia.database.*;
 import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 
 public class DataBaseController implements AutoCloseable {
-    private RepositoryAgent repAgent = new InMemoryRepositoryAgent();
+    private RepositoryAgent repAgent = new InFileRepositoryAgent();
     private RepositoryCourse repCourse = new InMemoryRepositoryCourse();
     private Scanner userInput = new Scanner(System.in);
 
@@ -49,7 +47,11 @@ public class DataBaseController implements AutoCloseable {
                 String inputName = userInput.next();
                 System.out.print("LastName: ");
                 String inputLastName = userInput.next();
-                repAgent.create(new Agent(0, inputName, inputLastName));
+                try {
+                    repAgent.create(new Agent(0, inputName, inputLastName));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 System.out.println();
                 break;
             case 4: //Update
@@ -145,6 +147,7 @@ public class DataBaseController implements AutoCloseable {
     }
 
     public void start() {
+        repAgent.creaFile();
         System.out.println("Inserisci un numero per accedere al menu richiesto");
         System.out.print("0.Esci\n1.Agente\n2.Corso\nInserisci numero: ");
         int num = userInput.nextInt();
