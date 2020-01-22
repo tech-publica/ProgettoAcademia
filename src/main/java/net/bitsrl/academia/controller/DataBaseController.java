@@ -3,7 +3,6 @@ package net.bitsrl.academia.controller;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Scanner;
-
 import net.bitsrl.academia.database.*;
 import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
