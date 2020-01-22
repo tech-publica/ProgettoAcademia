@@ -24,7 +24,7 @@ public class InFileRepositoryAgent implements RepositoryAgent {
             else
                 System.out.println("Il file " + path + " non può essere creato");
             scriviFile();
-            leggiFile();
+            leggiFile2();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,6 +69,21 @@ public class InFileRepositoryAgent implements RepositoryAgent {
                 System.out.print(in[i]);
             br.close();
         } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void leggiFile2(){
+        try {
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line = br.readLine();
+            while(line!=null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
