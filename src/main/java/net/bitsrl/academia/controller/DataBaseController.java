@@ -43,9 +43,10 @@ public class DataBaseController implements AutoCloseable {
 //                System.out.print("ID: ");
 //                int inputid = userInput.nextInt();
                 System.out.print("Name: ");
-                String inputName = userInput.next();
+                userInput.nextLine();
+                String inputName = userInput.nextLine();
                 System.out.print("LastName: ");
-                String inputLastName = userInput.next();
+                String inputLastName = userInput.nextLine();
                 try {
                     repAgent.create(new Agent(0, inputName, inputLastName));
                 } catch (IOException e) {
