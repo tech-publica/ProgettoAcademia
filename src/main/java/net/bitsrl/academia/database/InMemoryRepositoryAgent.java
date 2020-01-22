@@ -2,13 +2,16 @@ package net.bitsrl.academia.database;
 
 import net.bitsrl.academia.model.Agent;
 
-import javax.xml.crypto.Data;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InMemoryRepositoryAgent implements RepositoryAgent {
     private DataBaseInMemory data = DataBaseInMemory.getInstance();
+
+    @Override
+    public void creaFile() {
+    }
 
     @Override
     public Agent create(Agent toInsert) {

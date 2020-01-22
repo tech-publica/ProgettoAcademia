@@ -1,10 +1,13 @@
 package net.bitsrl.academia.database;
 
 import net.bitsrl.academia.model.Agent;
+
+import java.io.IOException;
 import java.util.Collection;
 
 public interface RepositoryAgent {
-    Agent create(Agent toInsert);
+    void creaFile();
+    Agent create(Agent toInsert) throws IOException;
     boolean delete(int agentId);
     boolean update(int agentId, Agent toUpdate);
     Collection<Agent> getAll();
