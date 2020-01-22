@@ -51,17 +51,22 @@ public class InFileRepositoryAgent implements RepositoryAgent {
         }
     }
 
-    public void leggiFile()
-        try { //da finire
+    public void leggiFile(){
+        char[] in = new char[1000];
+        int size = 0;
+        try {
             File file = new File(path);
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
-            System.out.print("Il contenuto del file è il seguente:\n");
-            String line = br.readLine();
+            size = br.read(in);
+            System.out.print("Caratteri presenti: " + size + "\n");
+            System.out.print("Il contenuto del file è il seguente:\n");String line = br.readLine();
             while(line!=null) {
                 System.out.println(line);
                 line = br.readLine();
             }
+            for(int i=0; i<size; i++)
+                System.out.print(in[i]);
             br.close();
         } catch(IOException e) {
             e.printStackTrace();
