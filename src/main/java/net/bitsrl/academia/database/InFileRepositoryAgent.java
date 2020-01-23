@@ -12,6 +12,7 @@ public class InFileRepositoryAgent implements RepositoryAgent {
     //    String path = getClass().getClassLoader().getResource("systemRepositoryAgent").getPath();
     String path = "src/main/resources/systemRepositoryAgent";
 
+    //RIDEFINIRE TUTTI I METODI INIZIANDO DALLA LETTURA
 
     public void creaFile() {
         File file = new File(path);
@@ -113,8 +114,10 @@ public class InFileRepositoryAgent implements RepositoryAgent {
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
+            String[] campi;
             while(line!=null) {
-                System.out.println(line);
+                campi = line.split(",");
+                //LEGGERE I CAMPI E INSERIRE I VALORI
                 line = br.readLine();
             }
             line = br.readLine();

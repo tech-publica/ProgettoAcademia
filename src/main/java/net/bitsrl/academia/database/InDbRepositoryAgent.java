@@ -31,7 +31,7 @@ public class InDbRepositoryAgent implements RepositoryAgent {
     public boolean delete(int agentId) {
         try (Connection con = ConnectionFactory.createConnection();
              PreparedStatement st = con.prepareStatement(DELETE)) {
-            st.setString(1, String.valueOf(agentId));
+            st.setInt(1, agentId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class InDbRepositoryAgent implements RepositoryAgent {
              PreparedStatement st = con.prepareStatement(UPDATE)) {
             st.setString(1, toUpdate.getFirstname());
             st.setString(2, toUpdate.getLastname());
-            st.setString(3, String.valueOf(agentId));
+            st.setInt(3,agentId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
