@@ -8,8 +8,8 @@ import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 
 public class DataBaseController implements AutoCloseable {
-    private RepositoryAgent repAgent = new InDbRepositoryAgent();
-    private RepositoryCourse repCourse = new InDbRepositoryCourse();
+    private RepositoryAgent repAgent = new InFileRepositoryAgent();
+    private RepositoryCourse repCourse = new InFileRepositoryCourse();
     private Scanner userInput = new Scanner(System.in);
 
     private void controlAgent() {
@@ -18,7 +18,6 @@ public class DataBaseController implements AutoCloseable {
         int num = userInput.nextInt();
         switch (num) {
             case 0: //Go Back
-
                 break;
             case 1: // Read Alls
                 System.out.println("-READ ALLS-");
@@ -79,7 +78,6 @@ public class DataBaseController implements AutoCloseable {
                 System.out.println("-Il menu arriva fino a 5-");
                 break;
         }
-
     }
 
     private void controlCourse() {
