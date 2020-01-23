@@ -11,13 +11,13 @@ public class InFileRepositoryAgent implements RepositoryAgent {
     //    String path = getClass().getClassLoader().getResource("systemRepositoryAgent").getPath();
     String path = "src/main/resources/systemRepositoryAgent";
 
-    @Override
-    public void creaFile() {
-        File file = new File(path);
-        if (!file.exists())
-            System.out.println("Il file " + path + " non può essere creato");
-        scriviFile();
-    }
+//    @Override
+//    public void creaFile() {
+//        File file = new File(path);
+//        if (!file.exists())
+//            System.out.println("Il file " + path + " non può essere creato");
+//        scriviFile();
+//    }
 
     public void scriviFile() {
         try {

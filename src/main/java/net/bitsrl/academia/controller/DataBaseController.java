@@ -8,7 +8,7 @@ import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 
 public class DataBaseController implements AutoCloseable {
-    private RepositoryAgent repAgent = new InFileRepositoryAgent();
+    private RepositoryAgent repAgent = new InDbRepositoryAgent();
     private RepositoryCourse repCourse = new InMemoryRepositoryCourse();
     private Scanner userInput = new Scanner(System.in);
 
@@ -147,7 +147,6 @@ public class DataBaseController implements AutoCloseable {
     }
 
     public void start() {
-        repAgent.creaFile();
         System.out.println("Inserisci un numero per accedere al menu richiesto");
         System.out.print("0.Esci\n1.Agente\n2.Corso\nInserisci numero: ");
         int num = userInput.nextInt();
