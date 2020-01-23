@@ -11,11 +11,11 @@ public class InDbRepositoryAgent implements RepositoryAgent {
     private DataBaseInMemory data = DataBaseInMemory.getInstance();
     //    String path = getClass().getClassLoader().getResource("systemRepositoryAgent").getPath();
     String path = "src/main/resources/systemRepositoryAgent";
-    final String CREATE = "INSERT INTO personale (nome, cognome) VALUES (?, ?);";
-    final String DELETE = "DELETE FROM personale WHERE idpersonale = ?;";
-    final String UPDATE = "UPDATE personale SET nome = ?, cognome = ? WHERE (idpersonale = ?);";
-    final String GET_ALL = "SELECT idpersonale, nome, cognome from personale;";
-    final String GET_BY_LASTNAME_LIKE = "SELECT idpersonale, nome, cognome from personale WHERE cognome LIKE ?;";
+    final String CREATE = "INSERT INTO agent (firstname, lastname) VALUES (?, ?);";
+    final String DELETE = "DELETE FROM agent WHERE id = ?;";
+    final String UPDATE = "UPDATE agent SET firstname = ?, lastname = ? WHERE (id = ?);";
+    final String GET_ALL = "SELECT id, firstname, lastname from agent;";
+    final String GET_BY_LASTNAME_LIKE = "SELECT id, firstname, lastname from agent WHERE lastname LIKE ?;";
 
     @Override
     public Agent create(Agent toInsert) {
@@ -63,9 +63,9 @@ public class InDbRepositoryAgent implements RepositoryAgent {
              Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(GET_ALL);
             while (rs.next()) {
-                int id = rs.getInt("idpersonale");
-                String firstname = rs.getString("nome");
-                String lastname = rs.getString("cognome");
+                int id = rs.getInt("id");
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
                 agents.add(new Agent(id, firstname, lastname));
             }
         } catch (SQLException e) {
@@ -82,9 +82,9 @@ public class InDbRepositoryAgent implements RepositoryAgent {
             st.setString(1, "%" + pattern + "%");
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
-                    int id = rs.getInt("idpersonale");
-                    String firstname = rs.getString("nome");
-                    String lastname = rs.getString("cognome");
+                    int id = rs.getInt("id");
+                    String firstname = rs.getString("firstname");
+                    String lastname = rs.getString("lastname");
                     agents.add(new Agent(id, firstname, lastname));
                 }
             }
