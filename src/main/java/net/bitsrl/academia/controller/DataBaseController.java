@@ -9,7 +9,7 @@ import net.bitsrl.academia.model.Course;
 
 public class DataBaseController implements AutoCloseable {
     private RepositoryAgent repAgent = new InDbRepositoryAgent();
-    private RepositoryCourse repCourse = new InMemoryRepositoryCourse();
+    private RepositoryCourse repCourse = new InDbRepositoryCourse();
     private Scanner userInput = new Scanner(System.in);
 
     private void controlAgent() {
@@ -109,17 +109,15 @@ public class DataBaseController implements AutoCloseable {
                 break;
             case 3: //Create
                 System.out.println("-CREATE-");
-                System.out.print("ID: ");
-                int inputid = userInput.nextInt();
                 System.out.print("Title: ");
-                String inputLastName = userInput.next();
+                String inputTitle = userInput.next();
                 System.out.print("Durata in ore: ");
                 int inputHour = userInput.nextInt();
-                repCourse.create(new Course(inputid, inputLastName, inputHour));
+                repCourse.create(new Course(0, inputTitle, inputHour));
                 System.out.println();
                 break;
             case 4: //Update
-                System.out.println("-UPDATE-\nLista Agents attuali");
+                System.out.println("-UPDATE-\nLista Corsi attuali");
                 Collection<Course> course2 = repCourse.getAll();
                 course2.forEach(System.out::println);
                 System.out.print("ID dell'Course da sostituire: ");
@@ -132,7 +130,7 @@ public class DataBaseController implements AutoCloseable {
                 System.out.println();
                 break;
             case 5: //Delete
-                System.out.println("-DELETE-");
+                System.out.println("-DELETE-\nLista Corsi attuali");
                 Collection<Course> course3 = repCourse.getAll();
                 course3.forEach(System.out::println);
                 System.out.print("Inserisci l'id del corso da eliminare: ");
