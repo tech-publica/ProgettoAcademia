@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class InDbRepositoryAgent implements RepositoryAgent {
-    private DataBaseInMemory data = DataBaseInMemory.getInstance();
-    //    String path = getClass().getClassLoader().getResource("systemRepositoryAgent").getPath();
-    String path = "src/main/resources/systemRepositoryAgent";
     final String CREATE = "INSERT INTO agent (firstname, lastname) VALUES (?, ?);";
     final String DELETE = "DELETE FROM agent WHERE id = ?;";
     final String UPDATE = "UPDATE agent SET firstname = ?, lastname = ? WHERE (id = ?);";

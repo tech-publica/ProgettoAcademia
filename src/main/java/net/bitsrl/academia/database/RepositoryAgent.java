@@ -11,6 +11,4 @@ public interface RepositoryAgent {
     boolean update(int agentId, Agent toUpdate);
     Collection<Agent> getAll();
     Collection<Agent> getByLastnameLike(String pattern);
-    //aggiungere metodi
-
 }

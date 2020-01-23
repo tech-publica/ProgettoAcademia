@@ -2,6 +2,7 @@ package net.bitsrl.academia.database;
 
 import net.bitsrl.academia.model.Agent;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,13 +12,13 @@ public class InFileRepositoryAgent implements RepositoryAgent {
     //    String path = getClass().getClassLoader().getResource("systemRepositoryAgent").getPath();
     String path = "src/main/resources/systemRepositoryAgent";
 
-//    @Override
-//    public void creaFile() {
-//        File file = new File(path);
-//        if (!file.exists())
-//            System.out.println("Il file " + path + " non può essere creato");
-//        scriviFile();
-//    }
+
+    public void creaFile() {
+        File file = new File(path);
+        if (!file.exists())
+            System.out.println("Il file " + path + " non può essere creato");
+        scriviFile();
+    }
 
     public void scriviFile() {
         try {
@@ -35,43 +36,6 @@ public class InFileRepositoryAgent implements RepositoryAgent {
             bw.newLine();
             bw.flush();
             bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void leggiFile() {
-        try {
-            File file = new File(path);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String line = br.readLine();
-            while(line!=null) {
-                System.out.println(line);
-                line = br.readLine();
-            }
-            line = br.readLine();
-            while (line != null) {
-                if (line.length() > 0)
-                    System.out.println(line.charAt(3));
-                line = br.readLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void leggiFile2(String pattern) {
-        try {
-            File file = new File(path);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String line = br.readLine();
-            while (line != null) {
-                if ((line.length() > 0) & line.contains(pattern))
-                    System.out.println(line);
-                line = br.readLine();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,14 +107,43 @@ public class InFileRepositoryAgent implements RepositoryAgent {
 
     @Override
     public Collection<Agent> getAll() {
-        Map<Integer, Agent> agents = data.getAgent();
-        leggiFile();
-        return agents.values();
+        Collection<Agent> agents = new ArrayList<>();
+        try {
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line = br.readLine();
+            while(line!=null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+            line = br.readLine();
+            while (line != null) {
+                if (line.length() > 0)
+                    System.out.println(line.charAt(3));
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return agents;
     }
 
     @Override
     public Collection<Agent> getByLastnameLike(String pattern) {
-        leggiFile2(pattern);
+        try {
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line = br.readLine();
+            while (line != null) {
+                if ((line.length() > 0) & line.contains(pattern))
+                    System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return data.getAgent().values().stream()
                 .filter(a -> a.getLastname().contains(pattern))
                 .collect(Collectors.toList());
