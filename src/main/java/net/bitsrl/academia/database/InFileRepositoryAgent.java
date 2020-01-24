@@ -45,22 +45,12 @@ public class InFileRepositoryAgent implements RepositoryAgent {
 
     @Override
     public Agent create(Agent toInsert) {
-        Map<Integer, Agent> agents = data.getAgent();
-        int maxKey = agents.keySet()
-                .stream()
-                .mapToInt(Integer::intValue)
-                .max()
-                .orElse(0);
-        maxKey++;
-        toInsert.setId(maxKey);
-        agents.put(toInsert.getId(), toInsert);
         try {
             File file = new File(path);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.newLine();
-            bw.write(String.valueOf(agents.values()));
-            bw.newLine();
+            bw.write(toInsert.getId()+","+toInsert.getFirstname()+" "+toInsert.getLastname());
             bw.flush();
             bw.close();
         } catch (IOException e) {
@@ -91,15 +81,15 @@ public class InFileRepositoryAgent implements RepositoryAgent {
     @Override
     public boolean update(int agentId, Agent toUpdate) {
         Collection<Agent> agents = getAll();
-        System.out.println(toUpdate);
+        System.out.println(toUpdate.getId());
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         try {
             File file = new File(path);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.newLine();
+//            bw.newLine();
 //            bw.write(String.valueOf(agents.values()));
-            bw.newLine();
+//            bw.newLine();
             bw.flush();
             bw.close();
         } catch (IOException e) {
