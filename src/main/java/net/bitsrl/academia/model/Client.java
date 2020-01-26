@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "client", schema = "academia")
 public class Client {
     private int id;
     private String name;
@@ -20,7 +21,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "client_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -131,7 +132,7 @@ public class Client {
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    @JoinColumn(name = "manager_id", referencedColumnName = "agent_id")
     public Agent getAgentManager() {
         return agentManager;
     }

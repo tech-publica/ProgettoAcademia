@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "teaching_assignment", schema = "academia", catalog = "")
+@Table(name = "teaching_assignment", schema = "academia")
 public class TeachingAssignment {
     private int id;
     private BigDecimal hourlyRate;
@@ -16,7 +16,7 @@ public class TeachingAssignment {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
+    @Column(name = "teaching_assignment_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -72,7 +72,7 @@ public class TeachingAssignment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "agent_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "agent_id", referencedColumnName = "agent_id", nullable = false)
     public Agent getTeacher() {
         return teacher;
     }
@@ -82,7 +82,7 @@ public class TeachingAssignment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "course_edition_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "course_edition_id", referencedColumnName = "course_edition_id", nullable = false)
     public CourseEdition getCourseEdition() {
         return courseEdition;
     }

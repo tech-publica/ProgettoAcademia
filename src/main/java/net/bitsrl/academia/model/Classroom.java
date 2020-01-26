@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "classroom", schema = "academia")
 public class Classroom {
     private int id;
     private String name;
@@ -15,7 +16,7 @@ public class Classroom {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "classroom_id", nullable = false)
     public int getId() {
         return id;
     }

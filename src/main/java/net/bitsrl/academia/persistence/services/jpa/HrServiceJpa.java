@@ -4,18 +4,24 @@ import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 import net.bitsrl.academia.persistence.repositories.DataException;
 import net.bitsrl.academia.persistence.repositories.abstractions.RepositoryAgent;
+import net.bitsrl.academia.persistence.repositories.jpa.EntityManagerFactoryHolder;
 import net.bitsrl.academia.persistence.services.abstractions.HRService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import java.util.Collection;
 
+@Service
 public class HrServiceJpa implements HRService {
     private RepositoryAgent agentRepo;
     private EntityManager em;
-    public HrServiceJpa(RepositoryAgent repo, EntityManager em) {
+
+    @Autowired
+    public HrServiceJpa(RepositoryAgent repo, EntityManagerFactoryHolder emHolder) {
         this.agentRepo = repo;
-        this.em = em;
+        this.em = emHolder.getCurrentManger();
     }
     @Override
     public Agent createAgent(Agent toInsert) throws DataException {

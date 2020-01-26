@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "area", schema = "academia")
 public class Area {
     private int id;
     private String name;
@@ -11,7 +12,7 @@ public class Area {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "area_id", nullable = false)
     public int getId() {
         return id;
     }

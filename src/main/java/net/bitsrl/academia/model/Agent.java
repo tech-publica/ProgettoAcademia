@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "agent", schema = "academia")
 public class Agent {
+
     private int id;
     private String firstname;
     private String lastname;
@@ -39,7 +41,7 @@ public class Agent {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "agent_id", nullable = false)
     public int getId() {
         return id;
     }

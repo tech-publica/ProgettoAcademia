@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "competence", schema = "academia")
 public class Competence {
     private int id;
     private byte level;
@@ -12,7 +13,7 @@ public class Competence {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "competence_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -46,7 +47,7 @@ public class Competence {
     }
 
     @ManyToOne
-    @JoinColumn(name = "agent_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "agent_id", referencedColumnName = "agent_id", nullable = false)
     public Agent getAgent() {
         return agent;
     }
@@ -56,7 +57,7 @@ public class Competence {
     }
 
     @ManyToOne
-    @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "skill_id", referencedColumnName = "skill_id", nullable = false)
     public Skill getSkill() {
         return skill;
     }

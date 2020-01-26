@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "enrollment", schema = "academia")
 public class Enrollment {
     private int id;
     private LocalDate enrollmentDate;
@@ -19,7 +20,7 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "enrollment_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -119,7 +120,7 @@ public class Enrollment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
     public Student getStudent() {
         return student;
     }
@@ -129,7 +130,7 @@ public class Enrollment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "course_editon_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "course_editon_id", referencedColumnName = "course_edition_id", nullable = false)
     public CourseEdition getCourseEdition() {
         return courseEdition;
     }

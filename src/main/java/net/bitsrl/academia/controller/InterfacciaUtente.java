@@ -7,11 +7,16 @@ import net.bitsrl.academia.model.Agent;
 import net.bitsrl.academia.model.Course;
 import net.bitsrl.academia.persistence.repositories.DataException;
 import net.bitsrl.academia.persistence.services.abstractions.HRService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class InterfacciaUtente implements AutoCloseable {
     private HRService hrService;
     private Scanner userInput = new Scanner(System.in);
 
+    @Autowired
     public InterfacciaUtente(HRService hrService) {
          this.hrService = hrService;
     }

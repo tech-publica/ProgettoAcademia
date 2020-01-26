@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "course_edition", schema = "academia", catalog = "")
+@Table(name = "course_edition", schema = "academia")
 public class CourseEdition {
     private int id;
     private LocalDate start;
@@ -27,7 +27,7 @@ public class CourseEdition {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "course_edition_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -127,7 +127,7 @@ public class CourseEdition {
     }
 
     @ManyToOne
-    @JoinColumn(name = "lead_teacher_id", referencedColumnName = "id")
+    @JoinColumn(name = "lead_teacher_id", referencedColumnName = "agent_id")
     public Agent getLeadTeacher() {
         return leadTeacher;
     }
@@ -137,7 +137,7 @@ public class CourseEdition {
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "manager_id", referencedColumnName = "agent_id", nullable = false)
     public Agent getManager() {
         return manager;
     }
@@ -147,7 +147,7 @@ public class CourseEdition {
     }
 
     @ManyToOne
-    @JoinColumn(name = "main_classroom_id", referencedColumnName = "id")
+    @JoinColumn(name = "main_classroom_id", referencedColumnName = "classroom_id")
     public Classroom getMainClassroom() {
         return mainClassroom;
     }
@@ -157,7 +157,7 @@ public class CourseEdition {
     }
 
     @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
     public Course getCourse() {
         return course;
     }

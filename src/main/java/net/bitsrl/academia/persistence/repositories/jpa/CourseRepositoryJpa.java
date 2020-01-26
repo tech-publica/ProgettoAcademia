@@ -2,9 +2,11 @@ package net.bitsrl.academia.persistence.repositories.jpa;
 
 import net.bitsrl.academia.model.Course;
 import net.bitsrl.academia.persistence.repositories.abstractions.RepositoryCourse;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+@Repository
 public class CourseRepositoryJpa implements RepositoryCourse {
     @Override
     public Course create(Course toInsert) {

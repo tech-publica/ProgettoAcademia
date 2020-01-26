@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "course", schema = "academia")
 public class Course {
     private int id;
     private String title;
@@ -42,7 +43,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "course_id", nullable = false)
     public int getId() {
         return id;
     }
@@ -132,7 +133,7 @@ public class Course {
     }
 
     @ManyToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "area_id", referencedColumnName = "area_id", nullable = false)
     public Area getArea() {
         return area;
     }
@@ -142,7 +143,7 @@ public class Course {
     }
 
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id", nullable = false)
     public Project getProject() {
         return project;
     }
